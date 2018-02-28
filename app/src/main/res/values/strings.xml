@@ -11,4 +11,6 @@
     <string name="copy_version_to_clipboard">Copy version to clipboard</string>
     <string name="copy_uuid_to_clipboard">Copy UUID to clipboard</string>
     <string name="description_app">This app converts the currency brough by the fixer.io API. Choose your favorite and start playing with the convertions</string>
+    <string name="check_the_currency_today">Check the Currency Today</string>
+    <string name="currency_today">Currency Today</string>
 </resources>

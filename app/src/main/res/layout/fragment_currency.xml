@@ -66,7 +66,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/description_app"
                     android:textAlignment="center"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
                     tools:ignore="MissingPrefix"/>
             </LinearLayout>
 
@@ -106,6 +106,17 @@
                 android:gravity="center_horizontal"
                 android:textSize="@dimen/text_size"
                 tools:text="£2,456.78"/>
+
+            <Button
+                android:id="@+id/goToCurrencyToday"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:layout_marginStart="50dp"
+                android:text="@string/check_the_currency_today"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"/>
         </LinearLayout>
 
         <com.currencymerlin.juansandoval.currency_merlin.view.activity.view.FavoriteFAB
