@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Currency Merlin</string>
+    <string name="icon_currency">currency icon</string>
+    <string name="ARG1_to_ARG2_set_as_your_standard_conversion_ARG3">%1$s to %2$s set as your standard conversion %3$s</string>
+    <string name="This_is_already_your_standard_conversion_ARG1">This is already your standard conversion %1$s</string>
+    <string name="fa_money">&#xf0d6;</string>
+    <string name="Amount">Amount</string>
+    <string name="Invalid_amount">❌ Invalid amount</string>
+    <string name="icon_description">currency merlin</string>
+    <string name="close">Close</string>
+    <string name="copy_version_to_clipboard">Copy version to clipboard</string>
+    <string name="copy_uuid_to_clipboard">Copy UUID to clipboard</string>
+    <string name="description_app">This app converts the currency brough by the fixer.io API. Choose your favorite and start playing with the convertions</string>
 </resources>
