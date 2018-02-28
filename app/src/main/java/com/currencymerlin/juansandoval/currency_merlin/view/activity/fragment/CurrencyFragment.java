@@ -1,6 +1,7 @@
 package com.currencymerlin.juansandoval.currency_merlin.view.activity.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.currencymerlin.juansandoval.currency_merlin.view.activity.Base.Rx.eve
 import com.currencymerlin.juansandoval.currency_merlin.view.activity.Base.Rx.event.EventStream;
 import com.currencymerlin.juansandoval.currency_merlin.view.activity.Base.Rx.util.ViewUtils;
 import com.currencymerlin.juansandoval.currency_merlin.view.activity.CurrencyEvent;
+import com.currencymerlin.juansandoval.currency_merlin.view.activity.TodaysCurrency.CurrencyTodayActivity;
 import com.currencymerlin.juansandoval.currency_merlin.view.activity.KeyboardEvent;
 import com.currencymerlin.juansandoval.currency_merlin.view.activity.analytics.Analytics;
 import com.currencymerlin.juansandoval.currency_merlin.view.activity.model.Currency;
@@ -101,11 +103,17 @@ public class CurrencyFragment extends BaseFragment {
         ViewUtils.hideKeyboard(getBaseActivity());
     }
 
+    @OnClick(R.id.goToCurrencyToday)
+    public void onClickToCurrencyToday() {
+        Intent intent = new Intent(getContext(), CurrencyTodayActivity.class);
+        startActivity(intent);
+    }
+
     @OnClick(R.id.icon)
     public void onClickIcon() {
         ++debugClicks;
 
-        if(debugClicks >= 10) {
+        if (debugClicks >= 10) {
             new DebugDialogFragment().show(getFragmentManager(), DebugDialogFragment.class.getName());
             analytics.openDebug();
         }
