@@ -15,9 +15,19 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 
 import com.currencymerlin.juansandoval.currency_merlin.R;
+import com.currencymerlin.juansandoval.currency_merlin.view.activity.Base.Rx.CurrencyApplication;
+import com.currencymerlin.juansandoval.currency_merlin.view.activity.Base.Rx.dependency.view.ViewComponent;
+import com.currencymerlin.juansandoval.currency_merlin.view.activity.Base.Rx.dependency.view.ViewModule;
+import com.currencymerlin.juansandoval.currency_merlin.view.activity.Base.Rx.event.EventStream;
+
+import javax.inject.Inject;
+
+import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
-
+    @Inject
+    EventStream eventStream;
+    private ViewComponent component;
     private ViewTreeObserver.OnGlobalLayoutListener keyboardLayoutListener;
     private Window window;
     private View rootView;
@@ -27,12 +37,26 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(getLayout());
+
+        _inject();
+        inject();
+
+        window = getWindow();
+        rootView = window.findViewById(Window.ID_ANDROID_CONTENT);
+        keyboardLayoutListener = getKeyboardLayoutListener();
+        rootView.getViewTreeObserver().addOnGlobalLayoutListener(keyboardLayoutListener);
     }
 
     @LayoutRes
     protected abstract int getLayout();
 
     protected abstract View getRootView();
+
+    private void _inject() {
+        component = ((CurrencyApplication) getApplication()).getApplicationComponent().plus(new ViewModule(this));
+        component.inject(this);
+        ButterKnife.bind(this);
+    }
 
     protected abstract void inject();
 
@@ -59,7 +83,6 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .addSharedElement(shared, "icon")
                 .replace(R.id.fragmentContainer, fragment)
                 .commit();
-
     }
 
     public ViewTreeObserver.OnGlobalLayoutListener getKeyboardLayoutListener() {
@@ -71,20 +94,23 @@ public abstract class BaseActivity extends AppCompatActivity {
                 Rect r = new Rect();
                 View view = window.getDecorView();
                 view.getWindowVisibleDisplayFrame(r);
+
                 if (initialHeight == 0) {
                     initialHeight = r.height();
                 } else {
                     if (initialHeight > r.height()) {
-                        //TODO inject the events
+                        eventStream.post(KeyboardEvent.KEYBOARD_SHOW);
                     } else if (initialHeight == r.height()) {
-                        //TODO inject the events
+                        eventStream.post(KeyboardEvent.KEYBOARD_HIDE);
                     }
                 }
             }
         };
     }
 
-    //TODO get the component
+    public ViewComponent getComponent() {
+        return component;
+    }
 
     @Override
     protected void onDestroy() {
@@ -92,5 +118,4 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         getRootView().getViewTreeObserver().removeOnGlobalLayoutListener(keyboardLayoutListener);
     }
-
 }
