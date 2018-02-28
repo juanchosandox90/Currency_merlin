@@ -75,14 +75,16 @@ public abstract class BaseActivity extends AppCompatActivity {
                     initialHeight = r.height();
                 } else {
                     if (initialHeight > r.height()) {
-
+                        //TODO inject the events
                     } else if (initialHeight == r.height()) {
-
+                        //TODO inject the events
                     }
                 }
             }
         };
     }
+
+    //TODO get the component
 
     @Override
     protected void onDestroy() {
