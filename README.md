@@ -1,5 +1,5 @@
 # Currency Merlin, a currency converter built in Android
-[Built on RxJava, fueled by awesomness and 🤓-iness]
+Built on RxJava
 
 
 ## Features
@@ -9,6 +9,7 @@
 - On Construction
 
 ## Architectural info
-Inspired by DDD, Fowler and React.
+Clean Architecture Approach
 
 ##### © 2018 JUAN CAMILO SANDOVAL DEVIA ALL RIGHTS RESERVED
+
